@@ -8,7 +8,7 @@ from todoapp import app
 from werkzeug.security import generate_password_hash, check_password_hash
 from Article import Article
 from displayInfo import DisplayInfo
-import urllib.request
+from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
 
 
@@ -69,7 +69,7 @@ def new():
 
 def parse_article(url):
      # given a url, get page content
-    req = urllib.request.urlopen(url, headers={'User-Agent': 'Mozilla/5.0'})
+    req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
     data = urlopen(req).read()
     # parse as html structured document
     bs = BeautifulSoup(data,'html.parser')
