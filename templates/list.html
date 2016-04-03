@@ -1,0 +1,79 @@
+{% extends 'layout.html' %}
+{% from 'macros.html' import icon %}
+
+{% block script %}
+    <script>
+        $(document).ready(function () {
+            $('.selectpicker').selectpicker();
+
+
+            // $('.article-info').each(function() {
+            //     if ($(this).prev().text().trim() != "{{category.name}}")
+            //         $(this).hide();
+            // });
+
+            $('.group').each(function() {
+                if($(this).text().trim() == "{{category.name}}")
+                    $(this).hide();
+            });
+
+            $('.group').click(function () {
+                if ($(this).next().css("display") == "none"){
+                    $(this).next().css("display", "block");
+                }else{
+                    $(this).next().css("display", "none");
+                }
+            });
+        
+            $('.title-comments').each(function(){
+                if($(this).children('h2').text().trim() != "{{displays[0].title}}"){
+                    $(this).hide();
+                }
+
+            });
+
+            $('.left-arrow').addClass("disabled");
+
+            $('.left-arrow').on("click", function(){
+                $(this).parent().hide();
+                $(this).parent().prev().show()
+                if($(this).parent().prev().is(':first-child'))
+                    $(this).parent().prev().find('.left-arrow').addClass("disabled");
+            });
+
+            $('.right-arrow').on("click", function(){
+                $('.left-arrow').removeClass("disabled");
+                $(this).parent().hide();
+                $(this).parent().next().show();
+                if ($(this).parent().next().is(':last-child'))
+                    $(this).parent().next().find('.right-arrow').addClass("disabled");
+            });
+
+        })
+    </script>
+{% endblock %}    
+
+{% block title %}<h1 id="welcome">TFM: <span id="offended-group">{{category.name}}</span></h1>{% endblock %}
+{% block content %}
+<div class="col-md-6 col-md-offset-1 rounded article-info">
+        {%- for display in displays %}
+    <div class="title-comments">
+        <button type="button" class="btn btn-default btn-sm arrow left-arrow">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        </button>
+        <h2 id="article-title"><a href="{{ display.url }}" target="_blank">{{ display.title }}</a></h2>
+        <button type="button" class="btn btn-default btn-sm arrow right-arrow">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        </button>
+        <h4 style = "margin-top:20px;">Top Rated Comments</h4>
+        <ul id="comments-list">
+            {%- for comment in display.comments %}
+            <li class="article-comments"><span class="glyphicon glyphicon-star"></span> "{{ comment.content }}" ({{comment.score}} votes)</li>
+            <li class="article-comments"></li>
+            {%- endfor %}
+        
+        </ul>
+    </div>    
+        {%- endfor %}    
+</div>
+{% endblock %}

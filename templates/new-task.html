@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block form %}
+    <form action="" method=post>
+    <h2>{%- if todo is defined %} Edit {% else %} Create new {% endif -%}Article</h2>
+        <div class="control-group">
+            <div class="control-group" >
+                <div class="controls">
+                    <select class="selectpicker" name="category" required>
+                        {% for category in categories %}
+                            <option value="{{ category.id }}" {%if todo is defined %}{% if todo.category_id == category.id %} selected {% endif %}{% endif %}>{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            
+            <hr>
+            {#<div class="control-group">
+                <div class="controls">
+                    <select class="selectpicker" name="author" required>
+                        {% for author in authors %}
+                                <option value="{{ author.id }}" {% if todo is defined %}{% if todo.author_id == author.id %} selected {% endif %}{% endif %}>{{ author.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>#}
+            
+            <hr>
+            <div class="control-group">
+                <div class="controls">
+                    <input 
+                        type="text" 
+                        id="description" 
+                        name="description" 
+                        maxlength="200" 
+                        class="form-control input-xlarge"
+                        placeholder="Paste article URL" 
+                        {% if todo is defined -%}
+                            value="{{ todo.description }}"
+                        {% endif -%}
+                        required
+                      />
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn btn-success">
+                    {% if todo %}
+                        Save
+                    {% else %}
+                        Post article
+                    {% endif %}
+                </button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
