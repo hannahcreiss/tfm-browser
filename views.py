@@ -47,7 +47,7 @@ def list_todos(name):
 
 
 @app.route('/new-task', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def new():
     if request.method == 'POST':
         url = request.form['description']
