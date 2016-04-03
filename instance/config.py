@@ -1,0 +1,3 @@
+import os
+SQLALCHEMY_DATABASE_URI=os.environ.get('HEROKU_POSTGRESQL_BROWN_URL');
+SESSION_TYPE = 'memcached'
