@@ -1,4 +1,4 @@
-from urllib.request import Request, urlopen
+import urllib.request
 from bs4 import BeautifulSoup
 
 class DisplayInfo:
@@ -6,7 +6,7 @@ class DisplayInfo:
 		self.url = todo.description
 
 	def get_soup(self):
-		req = Request(self.url, headers={'User-Agent': 'Mozilla/5.0'})
+		req = urllib.request.urlopen(self.url, headers={'User-Agent': 'Mozilla/5.0'})
 		data = urlopen(req).read()
 		# parse as html structured document
 		bs = BeautifulSoup(data,'html.parser')# kill javascript content
