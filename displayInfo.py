@@ -27,12 +27,6 @@ class DisplayInfo:
 			newComment = Comment(score,content)
 			self.comments.append(newComment)	
 		self.comments.sort(key = lambda c: c.score, reverse=True)
-		for comment in self.comments:
-			print("score: ")
-			print(comment.score)
-			print("content: ")
-			print(comment.content)
-
 
 class Comment:
 	def __init__(self, score, content):

@@ -200,14 +200,14 @@ def mark_done(todo_id):
 #         return redirect('/')                      
 
 
-@app.route("/logout", methods=["GET"])
-@login_required
-def logout():
-    """Logout the current user."""
-    user = current_user
-    user.authenticated = False
-    db.session.add(user)
-    db.session.commit()
-    logout_user()
-    return render_template("logout.html")    
+# @app.route("/logout", methods=["GET"])
+# @login_required
+# def logout():
+#     """Logout the current user."""
+#     user = current_user
+#     user.authenticated = False
+#     db.session.add(user)
+#     db.session.commit()
+#     logout_user()
+#     return render_template("logout.html")    
 
