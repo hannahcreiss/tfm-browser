@@ -20,6 +20,14 @@ body::after {
   background-size: cover;
 }
 
+#groupsContainer{
+	position: relative;
+	left: 51%;
+    top: 50%;
+    width: 600px;
+    margin: 0px 0px 0px -300px;
+}
+
 #welcome {
 	text-align: center;
 	font-family: 'Montserrat', sans-serif;
@@ -41,7 +49,9 @@ body::after {
 }
 
 div.group{
+	position:relative;
 	float: left;
+	margin: 50px 0 0 50px;
 }
 
 .col-centered{
@@ -54,7 +64,6 @@ div.group{
     width: 200px;
     height: 200px;
     margin: 50px;
-    float: right;
     text-align: center;
     padding: 20px 20px 20px 20px;
 }
@@ -68,6 +77,7 @@ div.article-info{
 	background-color: #59C4C5;
 	font-family: 'Playfair Display', serif;
 	font-weight: 400;
+	margin: 50px auto 100px auto;
 
 }
 

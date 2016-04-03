@@ -2,12 +2,13 @@
 {% from 'macros.html' import icon %}
 {% block content %}
 
+    <div class="col-md-10" id="groupsContainer">
     {%- for category in categories %}
         <div class="rounded group">
             <a href="{{ url_for('list_todos', name=category.name) }}"><span>{{ category.name }}</span></a>
         </div>
     {%- endfor %}
-
+    </div>
 {% endblock %}
 
 <div class="col-md-9">
